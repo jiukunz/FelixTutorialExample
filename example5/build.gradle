@@ -1,0 +1,19 @@
+apply plugin: 'osgi'
+
+version '1.0.0'
+
+jar {
+    manifest {
+        instruction 'Bundle-Activator', 'com.thoughtworks.Activator'
+        instruction 'Import-Package', 'org.osgi.framework', 'org.osgi.util.tracker', 'com.thoughtworks.service',''
+        instruction 'Export-Package', 'com.thoughtworks.Activator'
+        instruction 'Bundle-ActivationPolicy', 'lazy'
+
+        instruction 'Bundle-Name', 'Service Tracker-based dictionary client'
+        instruction 'Bundle-Description', ' A dictionary client using the Service Tracker.'
+        instruction 'Bundle-Vendor', 'Apache Felix'
+    }
+}
+dependencies {
+    compile project(':example2')
+}
