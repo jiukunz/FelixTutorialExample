@@ -1,0 +1,9 @@
+build/
+lib/
+
+.gradle
+.idea
+SimpleOSGI.iml
+SimpleOSGI.ipr
+SimpleOSGI.iws
+.DS_Store
