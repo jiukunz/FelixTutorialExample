@@ -29,10 +29,6 @@ import java.io.InputStreamReader;
  * the bundle.
  **/
 public class Activator implements BundleActivator {
-    // Bundle's context.
-    private BundleContext m_context = null;
-    // The service tacker object.
-    private ServiceTracker m_tracker = null;
 
     /**
      * Implements BundleActivator.start(). Crates a service
@@ -49,12 +45,11 @@ public class Activator implements BundleActivator {
      * @param context the framework context for the bundle.
      **/
     public void start(BundleContext context) throws Exception {
-        m_context = context;
 
         // Create a service tracker to monitor dictionary services.
-        m_tracker = new ServiceTracker(
-                m_context,
-                m_context.createFilter(
+        ServiceTracker m_tracker = new ServiceTracker(
+                context,
+                context.createFilter(
                         "(&(objectClass=" + DictionaryService.class.getName() + ")" +
                                 "(Language=*))"),
                 null);
@@ -62,7 +57,7 @@ public class Activator implements BundleActivator {
 
         try {
             System.out.println("Enter a blank line to exit.");
-            String word = "";
+            String word;
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
             // Loop endlessly.
